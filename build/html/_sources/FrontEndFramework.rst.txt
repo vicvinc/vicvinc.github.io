@@ -1,8 +1,0 @@
-.. c3h6 documentation master file, created by
-   sphinx-quickstart on Sun Sep 16 16:06:45 2018.
-   You can adapt this file completely to your liking, but it should at least
-   contain the root `toctree` directive.
-
-前端框架
-================================
-

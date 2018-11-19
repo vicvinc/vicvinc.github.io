@@ -1,9 +1,0 @@
-
-前端语言
-================================
-
-
-.. toctree::
-    :titlesonly:
-
-    ../language/javascript-types.rst

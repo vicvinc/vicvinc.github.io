@@ -1,9 +1,0 @@
-
-设计
-================================
-
-
-.. toctree::
-    :titlesonly:
-
-    ../design/flattern.rst
