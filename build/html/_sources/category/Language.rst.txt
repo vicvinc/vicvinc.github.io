@@ -7,3 +7,4 @@
     :titlesonly:
 
     ../yblogs/language/javascript-types.rst
+    ../yblogs/language/javascript-prototype.rst

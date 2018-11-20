@@ -19,7 +19,7 @@
 
 # -- Project information -----------------------------------------------------
 
-project = 'C3H6'
+project = 'SF'
 copyright = '2018, vicvinc'
 author = 'vicvinc'
 
