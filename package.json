@@ -1,0 +1,12 @@
+{
+  "name": "vnotes",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "build": "vuepress build docs",
+    "dev": "vuepress dev docs"
+  },
+  "repository": "https://github.com/vicvinc/vicvinc.github.io.git",
+  "author": "vicvinc <vicvinvinc@gmail.com>",
+  "license": "MIT"
+}
