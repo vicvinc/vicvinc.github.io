@@ -20,6 +20,6 @@ module.exports = {
       { text: "Gallery", link: "/gallery/" }
     ]
   },
-  base: "/",
+  base: "/dist/",
   dest: resolve("../../dist")
 };
