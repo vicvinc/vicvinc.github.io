@@ -1,4 +1,4 @@
-# a sphinx blog
+# a vuepress blog
 
 -- written by vicvinc.
 
