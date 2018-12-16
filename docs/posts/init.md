@@ -6,4 +6,6 @@ cover: ./init/cover.png
 excerpt: Watting for the sunraise, watting for the sunshine.
 ---
 
+# 2017 summary
+
 Be patient. Be modest.

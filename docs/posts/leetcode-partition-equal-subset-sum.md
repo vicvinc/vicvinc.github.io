@@ -6,6 +6,8 @@ cover: ./leetcode-partition-equal-subset-sum/cover.jpg
 excerpt: leetcode NP问题
 ---
 
+# leetcode-partition-equal-subset-sum
+
 `Given a non-empty array containing only positive integers, find if the array can be partitioned into two subsets such that the sum of elements in both subsets is equal.`
 
 找出一个数组中的和相等两个子数组
