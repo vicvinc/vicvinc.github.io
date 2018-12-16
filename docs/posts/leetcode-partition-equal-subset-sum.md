@@ -2,8 +2,8 @@
 title: leetcode-partition-equal-subset-sum
 date: 2017-07-04 23:56:25
 tags: [leetcode, algorithm]
-cover: cover.jpg
-myexcerpt: leetcode NP问题
+cover: ./leetcode-partition-equal-subset-sum/cover.jpg
+excerpt: leetcode NP问题
 ---
 
 `Given a non-empty array containing only positive integers, find if the array can be partitioned into two subsets such that the sum of elements in both subsets is equal.`
@@ -175,6 +175,5 @@ var canPartition = function(nums) {
 
 需要增强的理论：
 
-1. 什么是 P 问题，什么是 NP 问题，什么是 NP 完备（NPC），什么是 NP-Hard（数学白学系列…离散和高数）
+1. 什么是 P 问题，什么是 NP 问题，什么是 NP 完备（NPC），什么是 NP-Hard
 2. 图论和树理论中是否有可以用来解这个问题的理论？
-3. 时间复杂度的计算（又白学系列…）

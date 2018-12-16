@@ -2,8 +2,8 @@
 title: isHappyNumber
 date: 2017-07-07 01:17:06
 tags: [leetcode, algorithm]
-cover: cover.png
-myexcerpt: leetcode 数学问题
+cover: ./leetcode-isHappyNumber/cover.png
+excerpt: leetcode 数学问题
 ---
 
 `A happy number is a number defined by the following process: Starting with any positive integer, replace the number by the sum of the squares of its digits, and repeat the process until the number equals 1 (where it will stay), or it loops endlessly in a cycle which does not include 1. Those numbers for which this process ends in 1 are happy numbers.`
@@ -12,8 +12,6 @@ myexcerpt: leetcode 数学问题
 `82 + 22 = 68`
 `62 + 82 = 100`
 `12 + 02 + 02 = 1`
-
-这个题目有点绕, 虽然是个 Easy 级别的
 
 最朴素的想法是拿到一个数，然后去求各个数位上的平方和，继续迭代，如果得到 1 则返回 t，不为 1 则 f
 

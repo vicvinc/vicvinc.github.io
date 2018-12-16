@@ -2,8 +2,8 @@
 title: leetcode-Pacific-Atlantic-Water-Flow
 date: 2017-07-14 01:24:56
 tags: [leetcode, algorithm, graph-algorithm]
-cover: cover.jpg
-myexcerpt: 一个图的搜索问题
+cover: ./leetcode-Pacific-Atlantic-Water-Flow/cover.jpg
+excerpt: 一个图的搜索问题
 ---
 
 Given an <code>m x n</code> matrix of non-negative integers representing the height of each unit cell in a continent, the "Pacific ocean" touches the left and top edges of the matrix and the "Atlantic ocean" touches the right and bottom edges.
@@ -272,8 +272,8 @@ var pacificAtlantic = function(matrix) {
 };
 ```
 
-### 特点
+## 特点
 
-#### 空间复杂度和时间复杂度
+## 空间复杂度和时间复杂度
 
 因为深度优先搜索也是遍历了所有的节点，所以在时间复杂度上和广度优先搜索是一样的，空间上使用栈代替了队列，空间上的复杂度也是一样的

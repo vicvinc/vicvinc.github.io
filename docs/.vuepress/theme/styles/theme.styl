@@ -22,14 +22,14 @@ body
 
 .navbar
   position fixed
-  z-index 20
+  z-index 2000
   top 0
   left 0
   right 0
   height $navbarHeight
   background-color #fff
   box-sizing border-box
-  border-bottom 1px solid $borderColor
+  box-shadow: 0 0 8px 4px #f1f1f1
 
 .sidebar-mask
   position fixed
@@ -41,8 +41,8 @@ body
   display none
 
 .sidebar
-  font-size 15px
-  background-color #fff
+  font-size 14px
+  background-color #fafafa
   width $sidebarWidth
   position fixed
   z-index 10
@@ -51,7 +51,6 @@ body
   left 0
   bottom 0
   box-sizing border-box
-  border-right 1px solid $borderColor
   overflow-y auto
 
 .content:not(.custom)

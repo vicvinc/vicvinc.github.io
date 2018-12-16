@@ -2,8 +2,8 @@
 title: Search-a-2D-Matrix
 date: 2017-07-05 20:14:35
 tags: [leetcode, algorithm]
-cover: cover.jpg
-myexcerpt: leetcode 二叉搜索问题
+cover: ./leetcode-Search-a-2D-Matrix/cover.jpg
+excerpt: leetcode 二叉搜索问题
 ---
 
 > Write an efficient algorithm that searches for a value in an m x n matrix. This matrix has the following properties:

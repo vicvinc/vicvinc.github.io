@@ -2,11 +2,13 @@
 title: learn_css_review
 date: 2017-03-20 22:39:43
 tags: css
-cover: cover.jpg
-myexcerpt: CSS中的一些标准概念
+cover: ./learn-css-review/cover.jpg
+excerpt: CSS中的一些标准概念
 ---
 
 # css 的一些理论简要
+
+![cover](./learn-css-review/cover.jpg)
 
 ## 1.框模型：
 
