@@ -49,7 +49,8 @@ export default {
   computed: {
     base() {
       const { base = "" } = this.$site;
-      return base;
+      const ans = base.slice(0, base.length - 1);
+      return ans;
     }
   },
   filters: {
