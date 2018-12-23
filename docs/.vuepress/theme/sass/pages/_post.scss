@@ -1,20 +1,8 @@
 // Post listing
 .post-listing {
   background-color: $white;
-  position: absolute;
-  top: 400px;
-  width: 100%;
-  padding: 20px 20px 0;
-  transform: translate3d(0, 0, 1px);
-  z-index: 300;
-  @include media-query($small-screen) {
-    padding: 40px 30px 0;
-  }
-  @include media-query($medium-screen) {
-    height: 100vh;
-    overflow-y: scroll;
-    position: initial;
-    top: 0;
+  @media screen and (min-width: 769px) {
+    // padding: 40px;
   }
 }
 
@@ -161,6 +149,9 @@ a.read-more {
   background-repeat: no-repeat;
   background-position: center;
   background-attachment: fixed;
+  @media screen and (max-width: 768px) {
+    height: 120px;
+  }
 }
 
 .post-content {

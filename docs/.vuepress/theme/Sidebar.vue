@@ -1,20 +1,44 @@
 <template>
-  <div class="sidebar">
+  <div class="sidebar pt2">
     <NavLinks/>
     <slot name="top"/>
-    <ul class="sidebar-links" v-if="items.length">
-      <li v-for="(item, i) in items" :key="i">
-        <SidebarGroup
-          v-if="item.type === 'group'"
-          :item="item"
-          :first="i === 0"
-          :open="i === openGroupIndex"
-          :collapsable="item.collapsable"
-          @toggle="toggleGroup(i)"
-        />
-        <SidebarLink v-else :item="item"/>
-      </li>
-    </ul>
+    <div class="col pt2">
+      <div class="d-table-cell">
+        <a
+          class="link avatar"
+          href="https://vicvinc.github.io"
+          title="Go to Github"
+          aria-label="Go to Github"
+          data-collection-slug="Github"
+        >
+          <img :src="require('./images/avatar.jpeg')" class="avatar-image" alt="freeCodeCamp.org">
+        </a>
+      </div>
+      <div class="d-table-cell pl1">C3H6 design.</div>
+      <div class="nemo">Silence is Golden.</div>
+      <a class href="https://github.com/vicvinc">More information</a>
+      <div class="pt15 pb15 mb15">
+        <header class="else-where mb15">Elsewhere</header>
+        <div class="linkSet">
+          <a class="mr15" href="mailto:vicvinvinc@gmail.com" title="Email" aria-label="Email">
+            <span class="svgIcon svgIcon--email svgIcon--21px">
+              <img :src="icons.mail">
+            </span>
+          </a>
+          <a
+            class
+            href="//github.com/vicvinc"
+            title="github page"
+            aria-label="github page"
+            target="_blank"
+          >
+            <span class>
+              <img :src="icons.github">
+            </span>
+          </a>
+        </div>
+      </div>
+    </div>
     <slot name="bottom"/>
   </div>
 </template>
@@ -23,14 +47,18 @@
 import SidebarGroup from "./SidebarGroup.vue";
 import SidebarLink from "./SidebarLink.vue";
 import NavLinks from "./NavLinks.vue";
-import { isActive } from "./util";
+import { isActive, groupTags } from "./util";
 
 export default {
   components: { SidebarGroup, SidebarLink, NavLinks },
   props: ["items"],
   data() {
     return {
-      openGroupIndex: 0
+      openGroupIndex: 0,
+      icons: {
+        mail: require("./feather/mail.svg"),
+        github: require("./feather/github.svg")
+      }
     };
   },
   created() {
@@ -39,6 +67,18 @@ export default {
   watch: {
     $route() {
       this.refreshIndex();
+    }
+  },
+  computed: {
+    tagList() {
+      const { pages } = this.$site;
+      const tags = groupTags(pages);
+      return tags.map(t => ({
+        title: t,
+        collapsable: false,
+        type: "group",
+        children: []
+      }));
     }
   },
   methods: {
@@ -75,7 +115,26 @@ function resolveOpenGroupIndex(route, items) {
 @import './styles/config.styl';
 
 .sidebar {
-  background: #f1f2f5;
+  .avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  .nemo {
+    color: rgba(0, 0, 0, 0.68) !important;
+    font-size: 16px;
+    line-height: 1.4;
+    font-weight: 400;
+    padding: 15px 0;
+    margin-bottom: 15px;
+    text-size-adjust: 100%;
+  }
+
+  .more {
+    font-size: 16px;
+  }
 
   ul {
     padding: 0;

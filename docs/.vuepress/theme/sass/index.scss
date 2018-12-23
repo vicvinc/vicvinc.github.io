@@ -1,4 +1,5 @@
 @charset "UTF-8";
+@import "./bootstrap/index.scss";
 // Mixins
 @import "components/mixins";
 // Variables
@@ -8,7 +9,7 @@
 // Components
 @import "components/global";
 @import "components/helpers";
-@import "components/grid";
+// @import "components/grid";
 @import "components/typography";
 @import "components/buttons";
 @import "components/syntax-highlighting";

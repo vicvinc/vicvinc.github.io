@@ -21,8 +21,8 @@ body
   padding-left $sidebarWidth
 
 .navbar
-  position fixed
-  z-index 2000
+  // position fixed
+  // z-index 2000
   top 0
   left 0
   right 0
@@ -43,14 +43,6 @@ body
 .sidebar
   font-size 14px
   background-color #fafafa
-  width $sidebarWidth
-  position fixed
-  z-index 10
-  margin 0
-  top $navbarHeight
-  left 0
-  bottom 0
-  box-sizing border-box
   overflow-y auto
 
 .content:not(.custom)
@@ -178,12 +170,13 @@ th, td
     .custom-layout
       padding-top 0
 
-
-@media (min-width: ($MQMobile + 1px))
-  .theme-container.no-sidebar
-    .sidebar
-      display none
-    .page
-      padding-left 0
+.home-hero {
+  height: 400px;
+  width: 100%;
+  margin-top: 15px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
 
 @require './mobile.styl'

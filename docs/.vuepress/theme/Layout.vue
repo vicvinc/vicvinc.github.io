@@ -7,18 +7,19 @@
   >
     <Navbar v-if="shouldShowNavbar" @toggle-sidebar="toggleSidebar"/>
     <div class="sidebar-mask" @click="toggleSidebar(false)"></div>
-    <Sidebar :items="sidebarItems" @toggle-sidebar="toggleSidebar">
-      <slot name="sidebar-top" slot="top"/>
-      <slot name="sidebar-bottom" slot="bottom"/>
-    </Sidebar>
-    <div class="custom-layout" v-if="$page.frontmatter.layout">
-      <component :is="$page.frontmatter.layout"/>
+    <div class="container row m-auto">
+      <div v-if="$page.frontmatter.home" class="home-hero" :style="HeroBgStyle"></div>
+      <Home v-if="$page.frontmatter.home" class="col-8"/>
+      <Page v-else :sidebar-items="sidebarItems" class="col-8">
+        <slot name="page-top" slot="top"/>
+        <slot name="page-bottom" slot="bottom"/>
+      </Page>
+      <Sidebar :items="sidebarItems" @toggle-sidebar="toggleSidebar" class="col-4">
+        <slot name="sidebar-top" slot="top"/>
+        <slot name="sidebar-bottom" slot="bottom"/>
+      </Sidebar>
     </div>
-    <Home v-else-if="$page.frontmatter.home"/>
-    <Page v-else :sidebar-items="sidebarItems">
-      <slot name="page-top" slot="top"/>
-      <slot name="page-bottom" slot="bottom"/>
-    </Page>
+    <Footer/>
   </div>
 </template>
 
@@ -29,10 +30,27 @@ import Home from "./Home.vue";
 import Navbar from "./Navbar.vue";
 import Page from "./Page.vue";
 import Sidebar from "./Sidebar.vue";
+import Footer from "./Footer";
+
 import { resolveSidebarItems } from "./util";
 
+const HeroImages = [
+  require("./images/hero-bg-0.jpeg"),
+  require("./images/hero-bg-1.jpeg"),
+  require("./images/hero-bg-2.jpeg"),
+  require("./images/hero-bg-3.jpeg"),
+  require("./images/hero-bg-4.jpeg"),
+  require("./images/hero-bg-5.jpeg"),
+  require("./images/hero-bg-6.jpeg"),
+  require("./images/hero-bg-7.jpeg"),
+  require("./images/hero-bg-8.jpeg"),
+  require("./images/hero-bg-9.jpeg"),
+  require("./images/hero-bg-10.jpeg"),
+  require("./images/hero-bg-11.jpeg")
+];
+
 export default {
-  components: { Home, Page, Sidebar, Navbar },
+  components: { Home, Page, Sidebar, Navbar, Footer },
   data() {
     return {
       isSidebarOpen: false
@@ -40,6 +58,10 @@ export default {
   },
 
   computed: {
+    HeroBgStyle() {
+      const rd = Math.floor(Math.random() * 11) % 12;
+      return { backgroundImage: `url(${HeroImages[rd]}` };
+    },
     shouldShowNavbar() {
       const { themeConfig } = this.$site;
       const { frontmatter } = this.$page;

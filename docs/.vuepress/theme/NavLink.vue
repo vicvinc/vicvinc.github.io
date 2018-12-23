@@ -1,10 +1,5 @@
 <template>
-  <router-link
-    class="nav-link"
-    :to="link"
-    v-if="!isExternal(link)"
-    :exact="exact"
-  >{{ item.text }}</router-link>
+  <router-link class="nav-link" :to="link" v-if="!isExternal(link)" :exact="exact">{{ item.text }}</router-link>
   <a
     v-else
     :href="link"
@@ -18,7 +13,7 @@
 </template>
 
 <script>
-import { isExternal, isMailto, isTel, ensureExt } from './util'
+import { isExternal, isMailto, isTel, ensureExt } from "./util";
 
 export default {
   props: {
@@ -27,14 +22,16 @@ export default {
     }
   },
   computed: {
-    link () {
-      return ensureExt(this.item.link)
+    link() {
+      return ensureExt(this.item.link);
     },
-    exact () {
+    exact() {
       if (this.$site.locales) {
-        return Object.keys(this.$site.locales).some(rootLink => rootLink === this.link)
+        return Object.keys(this.$site.locales).some(
+          rootLink => rootLink === this.link
+        );
       }
-      return this.link === '/'
+      return this.link === "/";
     }
   },
   methods: {
@@ -42,5 +39,5 @@ export default {
     isMailto,
     isTel
   }
-}
+};
 </script>

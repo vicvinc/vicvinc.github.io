@@ -32,10 +32,10 @@ export default {
 @import './styles/config.styl';
 
 .home {
-  padding: $navbarHeight 0 0 20rem;
-  max-width: 100%;
-  margin: 0px auto;
+  // max-width: 1000px;
+  // padding: $navbarHeight 0 0 $sidebarWidth;
 
+  // margin: 0px auto;
   .hero {
     text-align: center;
 
