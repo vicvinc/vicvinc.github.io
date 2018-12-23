@@ -13,3 +13,5 @@
 3. photo gallery
 
 4. count words and reading time
+
+5. sort home page posts by create time
