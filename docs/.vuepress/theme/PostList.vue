@@ -10,15 +10,12 @@
         <p class="post-meta">
           <span class="post-date">{{ post.frontmatter.date | fromNow }}</span>
           •
-          <a
-            class="post-cat"
-            href="https://renyuanz.github.io/leonids/categories/#paragraph"
-          >{{ post.frontmatter.tags | stringifyTags }}</a>
+          <a class="post-cat" href="/tags">{{ post.frontmatter.tags | stringifyTags }}</a>
         </p>
         <h4>
           <a
             class="post-title"
-            :href="post.path"
+            :href="`${base}${post.path}`"
             :title="post.frontmatter.title"
           >{{ post.frontmatter.title }}</a>
         </h4>
@@ -48,6 +45,12 @@ export default {
   },
   data() {
     return {};
+  },
+  computed: {
+    base() {
+      const { base = "" } = this.$site;
+      return base;
+    }
   },
   filters: {
     fromNow(t) {
