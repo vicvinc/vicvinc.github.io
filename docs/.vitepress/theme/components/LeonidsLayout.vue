@@ -6,7 +6,7 @@ import AuthorSidebar from './AuthorSidebar.vue'
 import ThemeFooter from './ThemeFooter.vue'
 import PostMeta from './PostMeta.vue'
 
-const { frontmatter } = useData()
+const { frontmatter, site } = useData()
 const isHome = computed(() => Boolean(frontmatter.value.home))
 // 文章页（带 date）才需要 .vp-doc 包裹，套上默认主题的正文排版样式
 const isPost = computed(() => Boolean(frontmatter.value.date))
@@ -35,7 +35,12 @@ onMounted(() => {
       v-if="isHome"
       class="leonids-hero"
       :style="{ backgroundImage: `url(${hero})` }"
-    />
+    >
+      <div class="leonids-hero-overlay">
+        <h1 class="leonids-hero-title">{{ site.title }}</h1>
+        <p class="leonids-hero-tagline">{{ site.description }}</p>
+      </div>
+    </div>
 
     <main class="leonids-main">
       <div class="leonids-row">
@@ -46,7 +51,7 @@ onMounted(() => {
           </article>
           <Content v-else />
         </div>
-        <div class="leonids-side-col">
+        <div v-if="!isHome" class="leonids-side-col">
           <AuthorSidebar />
         </div>
       </div>

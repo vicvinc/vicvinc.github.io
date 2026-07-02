@@ -44,6 +44,7 @@ const social = theme.value.social || []
 }
 .author-name {
   display: block;
+  font-family: var(--leonids-font-serif);
   color: var(--leonids-pink-name);
   font-size: 1.4rem;
   font-weight: 600;
