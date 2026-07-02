@@ -1,13 +1,21 @@
 ---
-title: why-I-should-write-blog
+title: 为什么写博客
 date: 2017-02-12 02:15:46
 tags: life
-cover: ./why-I-should-write-blog/cover.png
-excerpt: Watting for sun raise, watting for sun shine.
+cover: /posts/why-I-should-write-blog/cover.png
+excerpt: 写下来，才知道自己想清楚了没有。
 ---
 
-# 写在前面的话：
+# 写在前面的话
 
 为什么我需要写博客？
 
-系统的学习
+最直接的答案是为了**系统的学习**。
+
+读过的东西很容易忘，但一旦逼着自己把它写出来，就不得不把那些似懂非懂的地方重新走一遍：理清概念、补上跳过的步骤、给出能跑通的例子。写的过程本身就是一次自我检验，写不清楚，多半是因为想得不清楚。
+
+其次是留下一个**属于自己的参考资料**。人的记忆并不可靠，半年前踩过的坑、调通的方法，往往在下次遇到时已经面目模糊。把它们记录下来，日后检索到的是当时的完整上下文，而不是被时间稀释过的零散印象。
+
+最后是一种**持续的推动**。有一个公开的地方在等着更新，就会让自己更主动地去学一点新东西、整理一点旧笔记。不必追求篇篇精彩，只要还在写，就还在前进。
+
+> Waiting for the sunrise, waiting for the sunshine.

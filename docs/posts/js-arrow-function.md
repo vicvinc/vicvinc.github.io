@@ -2,7 +2,7 @@
 title: ES6 Arrow Function
 date: 2017-08-07 17:55:14
 tags: [javascript-es6]
-cover: ./js-arrow-function/cover.jpg
+cover: /posts/js-arrow-function/cover.jpg
 excerpt: ES6中箭头函数的this指向问题
 ---
 
@@ -69,7 +69,7 @@ var a = true;
 
 JS 的数据类型一般可以分为两类：值类型和引用类型。
 
-值类型比如 Number／Boolen／Char／String／Undefined；
+值类型比如 Number／Boolean／Char／String／Undefined；
 引用类型就是剩下的 Null／Object／Array／Function／Date／Math 等等。
 
 对于值类型来说，就是字面常量，这里从 chrome 的 console 控制台可以看一下值类型的属性：
@@ -116,7 +116,7 @@ console.log(a);
 
 比如`var a = {}`，那么得到的 a 的`__proto__`指向的就是 Object 的 constructor （function Object(){[Native Code]}）的 prototype(Object.prototype)，即 Object.
 
-而 function Object()的 protptype 指向的又是 Object.prototype。
+而 function Object()的 prototype 指向的又是 Object.prototype。
 
 这里可以这么理解，JS 为了给实例继承不同类型的共有方法，把公有（public）的方法提取出来，放到一个叫 prototype 的属性下面，于是可以看到 Object.prototype/Function.prototype/Array.prototype/String.prototype 等。
 
@@ -127,8 +127,8 @@ console.log(a);
 所有变量都是对象。
 每个对象都有一个自己的构造函数 constructor function
 每个变量类型都有自己一套公用的方法集合 type.prototype
-每个构造函数都有一个原型链 protptype，指向的是对应的公用方法集合 type.protptype
-每有个实例对象都有一个隐式原型链`__proto__`，指向的是对应的公用方法集合 type.prototype
+每个构造函数都有一个原型链 prototype，指向的是对应的公用方法集合 type.prototype
+每个实例对象都有一个隐式原型链`__proto__`，指向的是对应的公用方法集合 type.prototype
 
 现在还有两个地方的`__proto__`指向不明，第一个是构造函数的`__proto__`，第二个是 type.prototype 的`__proto__`
 
@@ -144,7 +144,7 @@ var fn = new Function("args", "return args");
 
 好了，在弄清楚了作用域链和原型链之后，我们来看看 this 的指向：
 
-首先，全局下的 this 指向的是 windows，global 对象
+首先，全局下的 this 指向的是 window / global 对象
 
 函数作用域内的 this 指向的是函数的调用者，通常在全局调用的函数指向的是 global 对象
 

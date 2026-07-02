@@ -2,7 +2,7 @@
 title: android4.4下react inferno白屏的问题
 date: 2017-03-15 10:29:36
 tags: [react, inferno, android4.4]
-cover: ./android4-4-react-blank-screen/cover.png
+cover: /posts/android4-4-react-blank-screen/cover.png
 excerpt: 安卓手机上使用新的JS特性时遇到的问题
 ---
 
@@ -10,7 +10,7 @@ excerpt: 安卓手机上使用新的JS特性时遇到的问题
 
 ## 原因
 
-react 和 inferno 在安卓 4.4 下白屏的问题，虽然知道可定是 webview 的 js 引擎支撑的 api 有问题，但是 debug 没查出来；google 了一下是 babel 语法转换的问题；
+react 和 inferno 在安卓 4.4 下白屏的问题，虽然知道肯定是 webview 的 js 引擎支撑的 api 有问题，但是 debug 没查出来；google 了一下是 babel 语法转换的问题；
 
 > Babel 默认只转换新的 JavaScript 句法（syntax），而不转换新的 API，比如 Iterator、Generator、Set、Maps、Proxy、Reflect、Symbol、Promise 等全局对象，以及一些定义在全局对象上的方法（比如 Object.assign）都不会转码。
 
