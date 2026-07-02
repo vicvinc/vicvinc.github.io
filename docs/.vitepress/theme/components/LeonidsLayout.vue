@@ -8,6 +8,8 @@ import PostMeta from './PostMeta.vue'
 
 const { frontmatter } = useData()
 const isHome = computed(() => Boolean(frontmatter.value.home))
+// 文章页（带 date）才需要 .vp-doc 包裹，套上默认主题的正文排版样式
+const isPost = computed(() => Boolean(frontmatter.value.date))
 
 // hero 背景图（构建期 glob 出 URL）。SSR 用第一张避免水合不一致，
 // 客户端挂载后再随机换一张，保留老站"每次刷新换图"的感觉。
@@ -38,8 +40,11 @@ onMounted(() => {
     <main class="leonids-main">
       <div class="leonids-row">
         <div class="leonids-content-col">
-          <PostMeta />
-          <Content />
+          <article v-if="isPost" class="vp-doc leonids-article">
+            <PostMeta />
+            <Content />
+          </article>
+          <Content v-else />
         </div>
         <div class="leonids-side-col">
           <AuthorSidebar />
