@@ -2,7 +2,7 @@
 title: ES6 Arrow Function
 date: 2017-08-07 17:55:14
 tags: [javascript-es6]
-cover: ./js-arrow-function/cover.jpg
+cover: /posts/js-arrow-function/cover.jpg
 excerpt: ES6中箭头函数的this指向问题
 ---
 

@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { data as posts } from '../../data/posts.data'
+import { fromNow } from '../utils'
 
 interface Post {
   url: string
@@ -7,92 +8,111 @@ interface Post {
     title?: string
     date?: string
     excerpt?: string
+    cover?: string
     tags?: string[] | string
   }
-  readingTime?: number
 }
 
-function formatDate(d?: string): string {
-  if (!d) return ''
-  const dt = new Date(d)
-  return Number.isNaN(+dt) ? d : dt.toISOString().slice(0, 10)
-}
-
-function tagsOf(post: Post): string[] {
-  const t = post.frontmatter.tags
-  if (Array.isArray(t)) return t
-  if (typeof t === 'string') return [t]
-  return []
+function stringifyTags(tags?: string[] | string): string {
+  if (Array.isArray(tags)) return tags.length ? tags.join(' | ') : '未分类'
+  return tags || '未分类'
 }
 </script>
 
 <template>
-  <ul class="post-list">
-    <li v-for="post in (posts as Post[])" :key="post.url" class="post-item">
-      <a class="post-title" :href="post.url">{{ post.frontmatter.title }}</a>
-      <div class="post-meta">
-        <span>{{ formatDate(post.frontmatter.date) }}</span>
-        <span v-if="post.readingTime">· 约 {{ post.readingTime }} 分钟</span>
-        <span v-if="tagsOf(post).length" class="post-tags">
-          <a
-            v-for="t in tagsOf(post)"
-            :key="t"
-            :href="`/tags#${encodeURIComponent(t)}`"
-          >{{ t }}</a>
-        </span>
+  <main class="post-listing">
+    <section
+      v-for="post in (posts as Post[])"
+      :key="post.url"
+      class="post"
+    >
+      <a
+        v-if="post.frontmatter.cover"
+        class="post-cover"
+        :href="post.url"
+        :style="{ backgroundImage: `url(${post.frontmatter.cover})` }"
+        :aria-label="post.frontmatter.title"
+      />
+      <header class="post-header">
+        <p class="post-meta">
+          <span class="post-date">{{ fromNow(post.frontmatter.date as string) }}</span>
+          <span class="sep">•</span>
+          <span class="post-cat">{{ stringifyTags(post.frontmatter.tags) }}</span>
+        </p>
+        <h4>
+          <a class="post-title-link" :href="post.url">{{ post.frontmatter.title }}</a>
+        </h4>
+      </header>
+      <div v-if="post.frontmatter.excerpt" class="post-description">
+        <p>{{ post.frontmatter.excerpt }}</p>
       </div>
-      <p v-if="post.frontmatter.excerpt" class="post-excerpt">
-        {{ post.frontmatter.excerpt }}
-      </p>
-    </li>
-  </ul>
+    </section>
+  </main>
 </template>
 
 <style scoped>
-.post-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
+.post-listing {
+  background: var(--leonids-white);
 }
-.post-item {
-  padding: 1.25rem 0;
-  border-bottom: 1px solid var(--vp-c-divider);
+section.post {
+  margin-bottom: 20px;
 }
-.post-item:last-child {
-  border-bottom: none;
+section.post:not(:last-child) {
+  border-bottom: 1px dashed var(--leonids-pink);
 }
-.post-title {
-  font-size: 1.25rem;
-  font-weight: 600;
-  color: var(--vp-c-text-1);
-  text-decoration: none;
+
+.post-cover {
+  display: block;
+  position: relative;
+  margin-bottom: 20px;
+  height: 200px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
 }
-.post-title:hover {
-  color: var(--vp-c-brand-1);
+@media (max-width: 768px) {
+  .post-cover {
+    height: 140px;
+    background-attachment: scroll;
+  }
 }
+
 .post-meta {
-  margin-top: 0.4rem;
-  font-size: 0.875rem;
-  color: var(--vp-c-text-2);
-  display: flex;
-  gap: 0.5rem;
-  align-items: center;
-  flex-wrap: wrap;
+  font-size: 13px;
+  font-weight: bold;
+  margin: 0 0 0.3rem;
 }
-.post-tags {
-  display: inline-flex;
-  gap: 0.5rem;
+.post-date {
+  color: var(--leonids-secondary);
 }
-.post-tags a {
-  color: var(--vp-c-brand-2);
-  text-decoration: none;
+.post-cat {
+  text-transform: uppercase;
+  color: var(--leonids-warning);
 }
-.post-tags a:hover {
-  text-decoration: underline;
+.sep {
+  margin: 0 0.4em;
+  opacity: 0.4;
 }
-.post-excerpt {
-  margin: 0.5rem 0 0;
-  color: var(--vp-c-text-2);
-  font-size: 0.95rem;
+
+h4 {
+  margin: 0 0 0.4rem;
+  font-size: 1.1rem;
+}
+.post-title-link {
+  color: var(--leonids-primary);
+  font-size: 1.1rem;
+}
+.post-title-link:hover {
+  color: var(--leonids-primary-light);
+}
+
+.post-description {
+  margin-top: 0.25rem;
+}
+.post-description p {
+  margin: 0;
+  color: var(--leonids-text-soft);
+  line-height: 1.6;
 }
 </style>

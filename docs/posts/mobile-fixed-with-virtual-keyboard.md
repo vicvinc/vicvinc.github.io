@@ -2,7 +2,7 @@
 title: 移动端fixed布局软键盘呼起引起的视窗渲染问题
 date: 2018-11-20 09:00:00
 tags: 移动端兼容
-cover: ./init/cover.png
+cover: /posts/init/cover.png
 excerpt: 软键盘调起导致的fixed视窗滚动，和view port产生滚动差，导致点击区域错位
 ---
 

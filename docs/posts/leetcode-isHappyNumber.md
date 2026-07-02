@@ -2,7 +2,7 @@
 title: isHappyNumber
 date: 2017-07-07 01:17:06
 tags: [leetcode, algorithm]
-cover: ./leetcode-isHappyNumber/cover.png
+cover: /posts/leetcode-isHappyNumber/cover.png
 excerpt: leetcode 数学问题
 ---
 

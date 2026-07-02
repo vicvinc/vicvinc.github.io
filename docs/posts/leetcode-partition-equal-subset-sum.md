@@ -2,7 +2,7 @@
 title: leetcode-partition-equal-subset-sum
 date: 2017-07-04 23:56:25
 tags: [leetcode, algorithm]
-cover: ./leetcode-partition-equal-subset-sum/cover.jpg
+cover: /posts/leetcode-partition-equal-subset-sum/cover.jpg
 excerpt: leetcode NP问题
 ---
 

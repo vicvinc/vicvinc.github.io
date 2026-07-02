@@ -1,0 +1,142 @@
+/* Leonids 风格设计系统 —— 移植自老 VuePress 主题 */
+
+:root {
+  --leonids-bg: #f5f5f5;
+  --leonids-text: rgba(0, 0, 0, 0.87);
+  --leonids-text-soft: rgba(0, 0, 0, 0.68);
+  --leonids-primary: #42b983;
+  --leonids-primary-light: #5dd09b;
+  --leonids-secondary: #8d7edc;
+  --leonids-pink: #fc636b;
+  --leonids-pink-name: #f36170;
+  --leonids-warning: #f5a623;
+  --leonids-info: #09abf6;
+  --leonids-danger: #f83e4b;
+  --leonids-white: #fff;
+  --leonids-footer-bg: #1b1b1d;
+  --leonids-font: 'Source Sans Pro', 'Helvetica Neue', Helvetica, Arial,
+    'PingFang SC', 'Microsoft YaHei', sans-serif;
+  --leonids-font-mono: 'Roboto Mono', 'Courier New', monospace;
+  --leonids-navbar-h: 3.6rem;
+  --leonids-content-max: 1000px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 15px;
+  line-height: 1.5;
+  font-family: var(--leonids-font);
+  color: var(--leonids-text);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  margin: 0;
+  background: var(--leonids-bg);
+}
+
+a {
+  color: var(--leonids-primary);
+  text-decoration: none;
+  transition: color 0.1s ease;
+}
+a:hover,
+a:focus {
+  color: var(--leonids-primary-light);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 600;
+  line-height: 1.7;
+}
+
+blockquote {
+  margin: 1.2em 0;
+  padding-left: 20px;
+  border-left: 5px solid var(--leonids-secondary);
+  font-style: italic;
+  color: var(--leonids-text-soft);
+}
+
+img {
+  max-width: 100%;
+}
+
+/* —— 布局外壳 —— */
+.leonids-layout {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.leonids-main {
+  flex: 1;
+  width: 100%;
+  max-width: var(--leonids-content-max);
+  margin: 0 auto;
+  padding: 1.5rem 1.25rem 3rem;
+}
+
+/* 首页 hero 大图 */
+.leonids-hero {
+  width: 100%;
+  height: 42vh;
+  min-height: 280px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+/* 双栏：内容 + 作者卡（≥992px） */
+.leonids-row {
+  display: flex;
+  gap: 2.5rem;
+  align-items: flex-start;
+}
+.leonids-content-col {
+  flex: 1 1 0;
+  min-width: 0;
+}
+.leonids-side-col {
+  display: none;
+}
+@media (min-width: 992px) {
+  .leonids-content-col {
+    flex: 0 0 64%;
+  }
+  .leonids-side-col {
+    display: block;
+    flex: 0 0 30%;
+    position: sticky;
+    top: calc(var(--leonids-navbar-h) + 1rem);
+  }
+}
+
+/* —— footer —— */
+.leonids-footer {
+  background: var(--leonids-footer-bg);
+  color: #fafafa;
+  text-align: center;
+  padding: 1rem 1.25rem;
+  font-size: 0.9rem;
+}
+.leonids-footer .heart {
+  color: var(--leonids-pink);
+}
+
+/* 滚动条（老站风格） */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.35);
+  border-radius: 3px;
+}

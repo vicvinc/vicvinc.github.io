@@ -2,7 +2,7 @@
 title: learn_css_review
 date: 2017-03-20 22:39:43
 tags: css
-cover: ./learn-css-review/cover.jpg
+cover: /posts/learn-css-review/cover.jpg
 excerpt: CSS中的一些标准概念
 ---
 

@@ -2,7 +2,7 @@
 title: Search-a-2D-Matrix
 date: 2017-07-05 20:14:35
 tags: [leetcode, algorithm]
-cover: ./leetcode-Search-a-2D-Matrix/cover.jpg
+cover: /posts/leetcode-Search-a-2D-Matrix/cover.jpg
 excerpt: leetcode 二叉搜索问题
 ---
 

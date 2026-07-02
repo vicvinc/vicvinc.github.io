@@ -2,7 +2,7 @@
 title: leetcode-Pacific-Atlantic-Water-Flow
 date: 2017-07-14 01:24:56
 tags: [leetcode, algorithm, graph-algorithm]
-cover: ./leetcode-Pacific-Atlantic-Water-Flow/cover.jpg
+cover: /posts/leetcode-Pacific-Atlantic-Water-Flow/cover.jpg
 excerpt: 一个图的搜索问题
 ---
 

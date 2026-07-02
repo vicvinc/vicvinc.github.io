@@ -2,7 +2,7 @@
 title: android4.4下react inferno白屏的问题
 date: 2017-03-15 10:29:36
 tags: [react, inferno, android4.4]
-cover: ./android4-4-react-blank-screen/cover.png
+cover: /posts/android4-4-react-blank-screen/cover.png
 excerpt: 安卓手机上使用新的JS特性时遇到的问题
 ---
 
