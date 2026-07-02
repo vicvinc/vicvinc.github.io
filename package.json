@@ -1,19 +1,20 @@
 {
-  "name": "vnotes",
-  "version": "1.0.0",
-  "main": "index.js",
+  "name": "vicvinc-github-io",
+  "version": "2.0.0",
+  "description": "vicvinc's notes — personal blog",
+  "type": "module",
   "scripts": {
-    "build": "vuepress build docs",
-    "dev": "vuepress dev docs"
+    "dev": "vitepress dev docs",
+    "build": "vitepress build docs",
+    "preview": "vitepress preview docs"
   },
-  "repository": "https://github.com/vicvinc/vicvinc.github.io.git",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vicvinc/vicvinc.github.io.git"
+  },
   "author": "vicvinc <vicvinvinc@gmail.com>",
   "license": "MIT",
   "devDependencies": {
-    "node-sass": "^4.11.0",
-    "sass-loader": "^7.1.0"
-  },
-  "dependencies": {
-    "dayjs": "^1.7.8"
+    "vitepress": "^1.6.4"
   }
 }

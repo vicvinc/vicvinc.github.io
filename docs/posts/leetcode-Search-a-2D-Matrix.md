@@ -120,4 +120,4 @@ const searchMatrix = (a, n) => {
 };
 ```
 
-![ShowImage](/time.png)
+![ShowImage](./leetcode-Search-a-2D-Matrix/time.png)

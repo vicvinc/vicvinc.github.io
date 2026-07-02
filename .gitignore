@@ -1,2 +1,9 @@
 .vscode
 node_modules
+
+# VitePress build output & cache
+docs/.vitepress/cache
+docs/.vitepress/dist
+
+# OS / editor noise
+.DS_Store

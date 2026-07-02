@@ -1,8 +1,5 @@
 ---
-title: home
-date: 2018-05-18 11:33:40
-tags: 随记
-home: true
+title: 首页
 ---
 
-silence is golden.
+<HomePostList />
