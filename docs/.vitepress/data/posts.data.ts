@@ -31,7 +31,7 @@ function estimateReadingTime(raw: string): {
   return { words, minutes }
 }
 
-export default createContentLoader('posts/*.md', {
+export default createContentLoader('posts/**/*.md', {
   includeSrc: true,
   excerpt: true,
   transform(raw) {
