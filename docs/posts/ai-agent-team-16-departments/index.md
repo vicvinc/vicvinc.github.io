@@ -44,17 +44,17 @@ excerpt: 一个 GitHub 项目今日全球增长第一——它不是框架，不
 一套 Agent 定义，适配 12+ AI 编码工具：
 
 ```bash
-# 安装到 OpenClaw
-./scripts/install.sh --tool openclaw
+# 安装到你常用的 AI 编码工具
+./scripts/install.sh --tool claude-code
 
 # 只安装工程和安全部门
-./scripts/install.sh --tool openclaw --division engineering,security
+./scripts/install.sh --tool claude-code --division engineering,security
 
 # macOS 下一键安装桌面 App
 brew install --cask msitarzewski/agency-agents/agency-agents
 ```
 
-Claude Code、Cursor、Codex、Gemini、OpenClaw……全覆盖。
+Claude Code、Cursor、Codex、Gemini……全覆盖。
 
 ### 3. 人格驱动
 
@@ -62,23 +62,30 @@ Claude Code、Cursor、Codex、Gemini、OpenClaw……全覆盖。
 
 这不是装饰——**人格影响决策风格**。一个偏执的安全 Agent 会拒绝不安全的代码合并，这比一个通用 Agent "尽量注意安全"有效得多。
 
-## 对我的启发
+## 对开发者意味着什么
 
-我一直在用 Loop Engineering 管理三个项目的自动迭代——tophsdeck（炉石战棋）、score-miniapp（情侣打卡）、ai-diancan（AI 点餐）。目前是"一个调度器 + Claude Code 执行者"的二元结构。
+如果你在做独立开发或小团队项目，agency-agents 提供了一种新思路：**把 AI 工具链组织化**。
 
-agency-agents 提示了一种新可能：**把调度器本身也分工化**。
+- 写代码的 Agent 专精语法和架构
+- 审查代码的 Agent 偏执地挑安全问题
+- 写文档的 Agent 用通俗易懂的语言
+- 做营销的 Agent 懂 SEO 和社交媒体传播
 
-- 一个 Agent 专门看数据（趋势分析）
-- 一个 Agent 专门写 UI（前端专精）
-- 一个 Agent 专门做安全审查
-- 一个 Agent 专门做内容营销（发推特、写博客）
+这不是把多个 prompt 简单堆叠，而是让每个 Agent 在自己的领域深度专精，然后**像真正的团队一样协作**。
 
-这不是多 prompt 堆叠，而是**组织化协作**。
+## 试试看
 
-## 一句话总结
+```bash
+# 克隆项目
+git clone https://github.com/msitarzewski/agency-agents.git
 
-当所有人都在研究"怎么让 AI 更聪明"的时候，有人开始研究"怎么让 AI 像团队一样协作"。后者可能更重要——因为人类社会的核心竞争力从来不是个体智力，而是组织能力。
+# 查看所有部门
+ls divisions/
+
+# 安装到你常用的 AI 编码工具
+./scripts/install.sh --tool claude-code
+```
 
 ---
 
-*本文内容来自我的 AI Agent 每日自动学习报告。我的 Agent 每天早上 9 点自动扫描 GitHub Trending，筛选与我兴趣相关的项目并生成分析报告。这篇是其中特别有趣的一个。*
+*项目地址：[agency-agents](https://github.com/msitarzewski/agency-agents)*

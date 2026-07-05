@@ -1,24 +1,16 @@
 ---
-title: leetcode-Pacific-Atlantic-Water-Flow
+title: LeetCode 417 - Pacific Atlantic Water Flow
 date: 2017-07-14 01:24:56
 tags: [leetcode, algorithm, graph-algorithm]
 cover: /posts/leetcode-Pacific-Atlantic-Water-Flow/cover.jpg
-excerpt: 一个图的搜索问题
+excerpt: 逆向思维——从海洋出发的 BFS/DFS 图搜索。
 ---
 
-Given an `m x n` matrix of non-negative integers representing the height of each unit cell in a continent, the "Pacific ocean" touches the left and top edges of the matrix and the "Atlantic ocean" touches the right and bottom edges.
-Water can only flow in four directions (up, down, left, or right) from a cell to another one with height equal or lower.
-Find the list of grid coordinates where water can flow to both the Pacific and Atlantic ocean.
+## 题目
 
-**Note:**
+Given an `m x n` matrix of non-negative integers representing the height of each unit cell in a continent. The "Pacific ocean" touches the left and top edges of the matrix and the "Atlantic ocean" touches the right and bottom edges. Water can only flow from a cell to another one with height equal or lower. Find the list of grid coordinates where water can flow to both the Pacific and Atlantic ocean.
 
-- The order of returned grid coordinates does not matter.
-- Both `m` and `n` are less than 150.
-
-**Example:**
-
-```text
-Given the following 5x5 matrix:
+```
   Pacific ~   ~   ~   ~   ~
        ~  1   2   2   3  (5) *
        ~  3   2   3  (4) (4) *
@@ -26,259 +18,134 @@ Given the following 5x5 matrix:
        ~ (6) (7)  1   4   5  *
        ~ (5)  1   1   2   4  *
           *   *   *   *   * Atlantic
-Return:
-[[0, 4], [1, 3], [1, 4], [2, 2], [3, 0], [3, 1], [4, 0]] (positions with parentheses in above matrix).
+Return: [[0,4],[1,3],[1,4],[2,2],[3,0],[3,1],[4,0]]
 ```
 
-`背景知识补充`
+## 分析
 
-## 广度搜索(Breadth-First-Search)
+直觉思路是对每个格子做 BFS/DFS，看能不能同时到达两个大洋。但这样每个格子都要遍历整个矩阵，时间复杂度 O(m×n×(m+n))。
 
-广度优先搜索是一个层搜索，先访问根节点，再访问子节点。广度搜索可以说是从图的任何一个节点出发，先访问其子节点，然后在从其中一个子节点开始，进行下一次遍历。因为要保持访问的（层）顺序，所以需要一个队列用来记录当前已经遍历到的节点。
+**更好的思路是逆向思维——从大洋出发。**
 
-`伪码描述`
+水从高处流向低处，反过来就是：从大洋边界出发，可以"逆流"到达哪些格子？逆流的条件是：相邻格子的高度 **大于等于** 当前格子。
 
-1. 任意选取一个节点，放入队列，标记该节点的访问状态为已访问 true
-2. 如果队列不为空，取队列头为当前节点
-3. 如果没有找到可访问的节点，将头节点（当前节点）出队
-4. 如果找到其可访问的节点，标记这些可访问节点的访问状态为已访问，然后将头节点（当前节点）出队
-5. 重复步骤 2，3，4，直到队列为空，则通过该节点的所有节点都已经访问过，返回
+- 从 Pacific 边界（第一行 + 第一列）出发，标记所有能到达的格子
+- 从 Atlantic 边界（最后一行 + 最后一列）出发，标记所有能到达的格子
+- 两个标记的**交集**就是答案
 
-结合当前题目的描述：
-
-1. 将左上边界的所有节点入队，标记其访问状态为已访问
-2. 循环操作队列，如果队列不为空，取头，然后取该节点可到达的节点（上下左右），计算是否可以访问（ 未访问 && 节点值 <= 可到达节点）
-3. 将满足条件的节点入队，将头节点出队，循环 2
-4. 将右下边界的所有节点入队，重复步骤 2
-5. 将两次可访问的节点状态求交集
-
-`代码实现`
+## 解法：BFS
 
 ```javascript
 /**
  * @param {number[][]} matrix
  * @return {number[][]}
  */
-
-const BFS = (stack, dp, matrix, row, col) => {
-  while (stack.length > 0) {
-    let tail = stack[stack.length - 1];
-    let i = tail[0],
-      j = tail[1]; // (i, j) => [i, j]
-
-    let top = i - 1,
-      bottom = i + 1,
-      left = j - 1,
-      right = j + 1;
-
-    if (top >= 0 && !dp[top][j] && matrix[i][j] <= matrix[top][j]) {
-      dp[top][j] = true;
-      stack.pop();
-      stack.push([top, j]);
-      BFS(stack, dp, matrix, row, col);
-    }
-
-    if (
-      bottom <= row - 1 &&
-      !dp[bottom][j] &&
-      matrix[i][j] <= matrix[bottom][j]
-    ) {
-      dp[bottom][j] = true;
-      stack.pop();
-      stack.push([bottom, j]);
-      BFS(stack, dp, matrix, row, col);
-    }
-
-    if (left >= 0 && !dp[i][left] && matrix[i][j] <= matrix[i][left]) {
-      dp[i][left] = true;
-      stack.pop();
-      stack.push([i, left]);
-      BFS(stack, dp, matrix, row, col);
-    }
-
-    if (right <= col - 1 && !dp[i][right] && matrix[i][j] <= matrix[i][right]) {
-      dp[i][right] = true;
-      stack.pop();
-      stack.push([i, right]);
-      BFS(stack, dp, matrix, row, col);
-    }
-
-    stack.pop();
-  }
-};
-
-const pacificAtlantic = function(matrix) {
-  let row = matrix.length;
-
-  if (row === 0) {
-    return [];
-  }
-
-  let col = matrix[0].length;
-  let dp = new Array(row),
-    dp1 = new Array(row);
-
-  for (let k = 0; k < dp.length; k++) {
-    dp[k] = new Array(col);
-    dp1[k] = new Array(col);
-  }
-
-  let stack = [],
-    stack1 = [];
-  for (let i = 0; i < row; i++) {
-    for (let j = 0; j < col; j++) {
-      if (i === 0 || j === 0) {
-        dp[i][j] = true; // mark to be visited
-        stack.push([i, j]);
-      }
-      if (i === row - 1 || j === col - 1) {
-        dp1[i][j] = true; // mark to be visited
-        stack1.push([i, j]);
-      }
-    }
-  }
-
-  BFS(stack, dp, matrix, row, col);
-  BFS(stack1, dp1, matrix, row, col);
-
-  let rt = [];
-  for (let i = 0; i < row; i++) {
-    for (let j = 0; j < col; j++) {
-      if (dp[i][j] && dp1[i][j]) {
-        rt.push([i, j]);
-      }
-    }
-  }
-
-  return rt;
-};
-```
-
-### 特点
-
-#### 空间复杂度
-
-因为所有节点都必须被储存，因此 BFS 的空间复杂度为 O(|V| + |E|)，其中|V|是节点的数目，而|E|是图中边的数目。注：另一种说法称 BFS 的空间复杂度为 O(B^M)，其中 B 是最大分支系数，而 M 是树的最长路径长度。由于对空间的大量需求，因此 BFS 并不适合解非常大的问题。
-
-#### 时间复杂度
-
-最差情形下，BFS 必须寻找所有到可能节点的所有路径，因此其时间复杂度为 O(|V| + |E|)，其中|V|是节点的数目，而|E|是图中边的数目。
-
-#### 完全性
-
-广度优先搜索算法具有完全性。这意指无论图形的种类如何，只要目标存在，则 BFS 一定会找到。然而，若目标不存在，且图为无限大，则 BFS 将不收敛（不会结束）。
-
-## 深度优先搜索（Depth-First-Search）
-
-深度优先搜索类似二叉树遍历中的先序遍历，先访问根节点，然后找到跟节点的一个子节点，，标记这个子节点为已访问，然后以这个子节点为起始，再次进行深度搜索。广度搜索需要一个栈来记录之前没有访问完子节点的节点。
-
-`伪码描述`
-
-1. 取一个节点，入栈，标记其状态为已访问
-2. 当栈不为空时，取栈尾
-3. 如果栈尾的节点没有能继续访问的节点，将其出栈
-4. 如果有能继续访问的节点，将栈尾出栈，将下一个访问的节点入栈并标记其访问状态为已访问
-5. 转到步骤 2 直到栈尾空
-
-结合当前题目：
-
-1. 将左上边界的节点入栈，标记其状态为已访问
-2. 当栈不为空时，取栈尾
-3. 如果以栈尾为起点，没有可以访问的节点，出栈
-4. 如果以栈尾为起点，有可以访问的节点，将栈尾出栈，将可访问的节点入栈，并记录其访问状态为已访问
-5. 重复步骤 2 直到栈为空
-
-```javascript
-/**
- * @param {number[][]} matrix
- * @return {number[][]}
- */
-
-const DFV = (sq, dp, matrix, row, col) => {
-  while (sq.length > 0) {
-    let head = sq[0];
-    let i = sq[0][0],
-      j = sq[0][1]; // (i, j) => [i, j]
-
-    let top = i - 1,
-      bottom = i + 1,
-      left = j - 1,
-      right = j + 1;
-    if (top >= 0 && !dp[top][j] && matrix[i][j] <= matrix[top][j]) {
-      dp[top][j] = true;
-      sq.push([top, j]);
-    }
-
-    if (
-      bottom <= row - 1 &&
-      !dp[bottom][j] &&
-      matrix[i][j] <= matrix[bottom][j]
-    ) {
-      dp[bottom][j] = true;
-      sq.push([bottom, j]);
-    }
-
-    if (left >= 0 && !dp[i][left] && matrix[i][j] <= matrix[i][left]) {
-      dp[i][left] = true;
-      sq.push([i, left]);
-    }
-
-    if (right <= col - 1 && !dp[i][right] && matrix[i][j] <= matrix[i][right]) {
-      dp[i][right] = true;
-      sq.push([i, right]);
-    }
-    sq.shift();
-  }
-};
-
 var pacificAtlantic = function(matrix) {
-  let row = matrix.length;
+  if (!matrix || matrix.length === 0) return [];
 
-  if (row === 0) {
-    return [];
-  }
+  const m = matrix.length, n = matrix[0].length;
 
-  let col = matrix[0].length;
-  let dp = new Array(row),
-    dp1 = new Array(row);
+  // BFS 从给定边界出发，标记所有可达格子
+  const bfs = (queue) => {
+    const reachable = new Set();
+    while (queue.length > 0) {
+      const [r, c] = queue.shift();
+      const key = `${r},${c}`;
+      if (reachable.has(key)) continue;
+      reachable.add(key);
 
-  for (let k = 0; k < dp.length; k++) {
-    dp[k] = new Array(col);
-    dp1[k] = new Array(col);
-  }
-
-  let sq = [],
-    sq1 = [];
-  for (let i = 0; i < row; i++) {
-    for (let j = 0; j < col; j++) {
-      if (i === 0 || j === 0) {
-        dp[i][j] = true; // mark to be visited
-        sq.push([i, j]);
-      }
-      if (i === row - 1 || j === col - 1) {
-        dp1[i][j] = true; // mark to be visited
-        sq1.push([i, j]);
+      const dirs = [[-1, 0], [1, 0], [0, -1], [0, 1]];
+      for (const [dr, dc] of dirs) {
+        const nr = r + dr, nc = c + dc;
+        if (nr < 0 || nr >= m || nc < 0 || nc >= n) continue;
+        if (matrix[nr][nc] < matrix[r][c]) continue; // 逆流：高度必须 >=
+        queue.push([nr, nc]);
       }
     }
-  }
+    return reachable;
+  };
 
-  DFV(sq, dp, matrix, row, col);
-  DFV(sq1, dp1, matrix, row, col);
+  // Pacific 边界：第一行 + 第一列
+  const pQueue = [];
+  for (let i = 0; i < m; i++) pQueue.push([i, 0]);
+  for (let j = 0; j < n; j++) pQueue.push([0, j]);
 
-  let rt = [];
-  for (let i = 0; i < row; i++) {
-    for (let j = 0; j < col; j++) {
-      if (dp[i][j] && dp1[i][j]) {
-        rt.push([i, j]);
-      }
+  // Atlantic 边界：最后一行 + 最后一列
+  const aQueue = [];
+  for (let i = 0; i < m; i++) pQueue.push([i, n - 1]);
+  for (let j = 0; j < n; j++) pQueue.push([m - 1, j]);
+
+  const pacific = bfs(pQueue);
+  const atlantic = bfs(aQueue);
+
+  // 求交集
+  const result = [];
+  for (const key of pacific) {
+    if (atlantic.has(key)) {
+      const [r, c] = key.split(',').map(Number);
+      result.push([r, c]);
     }
   }
-  return rt;
+  return result;
 };
 ```
 
-## 特点
+### DFS 版本
 
-## 空间复杂度和时间复杂度
+也可以用 DFS，思路完全一样：
 
-因为深度优先搜索也是遍历了所有的节点，所以在时间复杂度上和广度优先搜索是一样的，空间上使用栈代替了队列，空间上的复杂度也是一样的
+```javascript
+var pacificAtlantic = function(matrix) {
+  if (!matrix || matrix.length === 0) return [];
+
+  const m = matrix.length, n = matrix[0].length;
+  const pacific = Array.from({ length: m }, () => new Array(n).fill(false));
+  const atlantic = Array.from({ length: m }, () => new Array(n).fill(false));
+
+  const dfs = (r, c, visited) => {
+    visited[r][c] = true;
+    const dirs = [[-1, 0], [1, 0], [0, -1], [0, 1]];
+    for (const [dr, dc] of dirs) {
+      const nr = r + dr, nc = c + dc;
+      if (nr < 0 || nr >= m || nc < 0 || nc >= n) continue;
+      if (visited[nr][nc]) continue;
+      if (matrix[nr][nc] < matrix[r][c]) continue;
+      dfs(nr, nc, visited);
+    }
+  };
+
+  // 从 Pacific 边界出发
+  for (let i = 0; i < m; i++) dfs(i, 0, pacific);
+  for (let j = 0; j < n; j++) dfs(0, j, pacific);
+
+  // 从 Atlantic 边界出发
+  for (let i = 0; i < m; i++) dfs(i, n - 1, atlantic);
+  for (let j = 0; j < n; j++) dfs(m - 1, j, atlantic);
+
+  // 求交集
+  const result = [];
+  for (let i = 0; i < m; i++) {
+    for (let j = 0; j < n; j++) {
+      if (pacific[i][j] && atlantic[i][j]) {
+        result.push([i, j]);
+      }
+    }
+  }
+  return result;
+};
+```
+
+## 复杂度
+
+| | BFS | DFS |
+|---|---|---|
+| 时间 | O(m × n) | O(m × n) |
+| 空间 | O(m × n) | O(m × n) |
+
+每个格子最多被访问常数次（两个大洋各一次）。
+
+## 小结
+
+这道题的核心是**逆向思维**：与其对每个格子问"能不能流到大海"，不如从大海问"能逆流到哪些格子"。把 O(m×n×(m+n)) 降到了 O(m×n)。
+
+这种"从结果反推来源"的思路在很多图搜索问题中都适用——比如迷宫求出口、单词搜索等。
