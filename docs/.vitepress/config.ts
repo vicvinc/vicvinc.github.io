@@ -16,6 +16,17 @@ export default defineConfig({
         rel: 'stylesheet',
         href: 'https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,500;0,600;0,700;1,500&family=Roboto+Mono&family=Source+Sans+Pro:ital,wght@0,400;0,600;0,700;1,400&display=swap'
       }
+    ],
+
+    // Google Analytics (gtag.js)
+    ['script', { async: '', src: 'https://www.googletagmanager.com/gtag/js?id=G-BTLXGM0FS5' }],
+    [
+      'script',
+      {},
+      `window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-BTLXGM0FS5');`
     ]
   ],
 
