@@ -2,6 +2,7 @@
 title: iOS Safari 日期解析 NaN 问题
 date: 2018-05-18 11:33:40
 tags: [javascript, ios, bugs]
+cover: /posts/datetime/cover.jpg
 excerpt: new Date('2018-05-18 11:33:40') 在 iOS 下会得到 Invalid Date——跨端解析的坑。
 ---
 

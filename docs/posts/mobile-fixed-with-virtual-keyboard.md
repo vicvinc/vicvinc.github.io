@@ -2,7 +2,7 @@
 title: 移动端 fixed 布局与软键盘的冲突
 date: 2018-11-20 09:00:00
 tags: [css, mobile, 修复]
-cover: /posts/init/cover.png
+cover: /posts/mobile-fixed-with-virtual-keyboard/cover.jpg
 excerpt: 软键盘弹起导致 fixed 元素错位——一个移动端表单的经典坑。
 ---
 

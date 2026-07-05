@@ -2,6 +2,7 @@
 title: 当大学生开始出题考 AI：复旦一场"反套路"期末考试
 date: 2026-07-04 22:50:00
 tags: ai
+cover: /posts/fudan-human-tests-ai/cover.jpg
 excerpt: 学生出题、AI 答题、答错越多分越高——复旦数据挖掘课的这场期末考试，揭示了 AI 时代真正重要的能力。
 ---
 
